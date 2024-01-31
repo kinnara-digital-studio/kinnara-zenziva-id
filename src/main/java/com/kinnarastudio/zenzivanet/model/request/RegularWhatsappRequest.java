@@ -8,16 +8,16 @@ import java.net.URLEncoder;
 
 import static org.apache.http.entity.mime.HttpMultipartMode.BROWSER_COMPATIBLE;
 
-public class RegularSmsRequest {
+public class RegularWhatsappRequest {
     private final String baseUrl;
-    private final String path = "/reguler/api/sendsms";
+    private final String path = "/wareguler/api/sendWA";
 
     private final ApiAccount apiAccount;
 
     private final String to;
     private final String message;
 
-    public RegularSmsRequest(String baseUrl, ApiAccount apiAccount, String to, String message) {
+    public RegularWhatsappRequest(String baseUrl, ApiAccount apiAccount, String to, String message) {
         this.baseUrl = baseUrl;
         this.apiAccount = apiAccount;
         this.to = to;

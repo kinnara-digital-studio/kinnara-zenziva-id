@@ -4,8 +4,10 @@ import com.kinnarastudio.zenzivanet.model.exception.RequestException;
 import com.kinnarastudio.zenzivanet.model.exception.ResponseException;
 import com.kinnarastudio.zenzivanet.model.request.BalanceRequest;
 import com.kinnarastudio.zenzivanet.model.request.RegularSmsRequest;
+import com.kinnarastudio.zenzivanet.model.request.RegularWhatsappRequest;
 import com.kinnarastudio.zenzivanet.model.response.BalanceResponse;
 import com.kinnarastudio.zenzivanet.model.response.RegularSmsResponse;
+import com.kinnarastudio.zenzivanet.model.response.RegularWhatsappResponse;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
@@ -77,21 +79,24 @@ public class ZenzivaClient {
     }
 
     public RegularSmsResponse executePostRegularSms(String to, String message) throws RequestException, ResponseException {
-        final RegularSmsRequest regularSmsRequest = new RegularSmsRequest(baseUrl, apiAccount, to, message);
+        final RegularSmsRequest request = new RegularSmsRequest(baseUrl, apiAccount, to, message);
 
-        final HttpPost request = new HttpPost(regularSmsRequest.getUrl());
+        final String url = request.getUrl();
+        final HttpPost httpPost = new HttpPost(url);
+        httpPost.setEntity(request.getEntity());
 
         final HttpClient client = getHttpClient(ignoreSslCertificateError);
 
         final HttpResponse response;
         try {
-            response = client.execute(request);
+            response = client.execute(httpPost);
         } catch (IOException e) {
             throw new RequestException(e);
         }
 
         final int statusCode = getResponseStatus(response);
-        if (statusCode != 200) {
+        final int statusGroupCode = getStatusGroupCode(statusCode);
+        if (statusGroupCode != 200) {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))) {
                 String responsePayload = br.lines().collect(Collectors.joining());
                 throw new ResponseException("Response code [" + statusCode + "] is not 200 (Success) :" + responsePayload);
@@ -107,6 +112,42 @@ public class ZenzivaClient {
             throw new ResponseException(e);
         }
     }
+
+    public RegularWhatsappResponse executePostRegularWhatsapp(String to, String message) throws RequestException, ResponseException {
+        final RegularWhatsappRequest request = new RegularWhatsappRequest(baseUrl, apiAccount, to, message);
+
+        final String url = request.getUrl();
+        final HttpPost httpPost = new HttpPost(url);
+        httpPost.setEntity(request.getEntity());
+
+        final HttpClient client = getHttpClient(ignoreSslCertificateError);
+
+        final HttpResponse response;
+        try {
+            response = client.execute(httpPost);
+        } catch (IOException e) {
+            throw new RequestException(e);
+        }
+
+        final int statusCode = getResponseStatus(response);
+        final int statusGroupCode = getStatusGroupCode(statusCode);
+        if (statusGroupCode != 200) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))) {
+                String responsePayload = br.lines().collect(Collectors.joining());
+                throw new ResponseException("Response code [" + statusCode + "] is not 200 (Success) :" + responsePayload);
+            } catch (IOException e) {
+                throw new ResponseException(e);
+            }
+        }
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))) {
+            final JSONObject jsonResponseBody = new JSONObject(br.lines().collect(Collectors.joining()));
+            return new RegularWhatsappResponse(jsonResponseBody);
+        } catch (IOException | JSONException e) {
+            throw new ResponseException(e);
+        }
+    }
+
 
     protected int getResponseStatus(@Nonnull HttpResponse response) throws ResponseException {
         return Optional.of(response)
@@ -129,6 +170,10 @@ public class ZenzivaClient {
         } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
             throw new RequestException(e);
         }
+    }
+
+    protected int getStatusGroupCode(int status) {
+        return status - (status % 100);
     }
 
     public static class Builder {

@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e252d26-ef75-49ef-bb69-9c9fe159ea32" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/ZenzivaClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/exception/RequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/exception/ResponseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/request/BalanceRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/request/RegularSmsRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/response/BalanceResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/response/RegularSmsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/UnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/request/RegularWhatsappRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/response/RegularWhatsappResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/ZenzivaClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/ZenzivaClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/request/RegularSmsRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kinnarastudio/zenzivanet/model/request/RegularSmsRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +57,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kinnarastudio.zenzivanet.model.request" />
       <recent name="com.kinnarastudio.zenzivanet.model.response" />
     </key>
   </component>
@@ -144,16 +138,5 @@
       <updated>1706683400079</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/UnitTest.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
